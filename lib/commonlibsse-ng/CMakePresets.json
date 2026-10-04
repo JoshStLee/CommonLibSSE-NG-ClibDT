@@ -145,34 +145,22 @@
       "hidden": true
     },
     {
-      "name": "runtimes-vr",
-      "hidden": true,
-      "cacheVariables": {
-        "ENABLE_SKYRIM_AE": "OFF",
-        "ENABLE_SKYRIM_SE": "OFF"
-      }
-    },
-    {
       "name": "runtimes-flatrim",
       "hidden": true,
-      "cacheVariables": {
-        "ENABLE_SKYRIM_VR": "OFF"
-      }
+      "cacheVariables": {}
     },
     {
       "name": "runtimes-se",
       "hidden": true,
       "cacheVariables": {
-        "ENABLE_SKYRIM_AE": "OFF",
-        "ENABLE_SKYRIM_VR": "OFF"
+        "ENABLE_SKYRIM_AE": "OFF"
       }
     },
     {
       "name": "runtimes-ae",
       "hidden": true,
       "cacheVariables": {
-        "ENABLE_SKYRIM_SE": "OFF",
-        "ENABLE_SKYRIM_VR": "OFF"
+        "ENABLE_SKYRIM_SE": "OFF"
       }
     },
     {
@@ -226,16 +214,6 @@
       "name": "build-debug-clang-cl-vcpkg-flatrim",
       "inherits": ["build-debug-clang-cl-vcpkg-all", "runtimes-flatrim"],
       "binaryDir": "${sourceDir}/build/debug-clang-cl-vcpkg-flatrim"
-    },
-    {
-      "name": "build-debug-msvc-vcpkg-vr",
-      "inherits": ["build-debug-msvc-vcpkg-all", "runtimes-vr"],
-      "binaryDir": "${sourceDir}/build/debug-msvc-vcpkg-vr"
-    },
-    {
-      "name": "build-debug-clang-cl-vcpkg-vr",
-      "inherits": ["build-debug-clang-cl-vcpkg-all", "runtimes-vr"],
-      "binaryDir": "${sourceDir}/build/debug-clang-cl-vcpkg-vr"
     },
     {
       "name": "build-debug-msvc-vcpkg-ae",
@@ -316,16 +294,6 @@
       "binaryDir": "${sourceDir}/build/release-clang-cl-vcpkg-flatrim"
     },
     {
-      "name": "build-release-msvc-vcpkg-vr",
-      "inherits": ["build-release-msvc-vcpkg-all", "runtimes-vr"],
-      "binaryDir": "${sourceDir}/build/release-msvc-vcpkg-vr"
-    },
-    {
-      "name": "build-release-clang-cl-vcpkg-vr",
-      "inherits": ["build-release-clang-cl-vcpkg-all", "runtimes-vr"],
-      "binaryDir": "${sourceDir}/build/release-clang-cl-vcpkg-vr"
-    },
-    {
       "name": "build-release-msvc-vcpkg-ae",
       "inherits": ["build-release-msvc-vcpkg-all", "runtimes-ae"],
       "binaryDir": "${sourceDir}/build/release-msvc-vcpkg-ae"
@@ -402,16 +370,6 @@
       "name": "build-debug-clang-cl-conan-flatrim",
       "inherits": ["build-debug-clang-cl-conan-all", "runtimes-flatrim"],
       "binaryDir": "${sourceDir}/build/debug-clang-cl-conan-flatrim"
-    },
-    {
-      "name": "build-debug-msvc-conan-vr",
-      "inherits": ["build-debug-msvc-conan-all", "runtimes-vr"],
-      "binaryDir": "${sourceDir}/build/debug-msvc-conan-vr"
-    },
-    {
-      "name": "build-debug-clang-cl-conan-vr",
-      "inherits": ["build-debug-clang-cl-conan-all", "runtimes-vr"],
-      "binaryDir": "${sourceDir}/build/debug-clang-cl-conan-vr"
     },
     {
       "name": "build-debug-msvc-conan-ae",
@@ -492,16 +450,6 @@
       "binaryDir": "${sourceDir}/build/release-clang-cl-conan-flatrim"
     },
     {
-      "name": "build-release-msvc-conan-vr",
-      "inherits": ["build-release-msvc-conan-all", "runtimes-vr"],
-      "binaryDir": "${sourceDir}/build/release-msvc-conan-vr"
-    },
-    {
-      "name": "build-release-clang-cl-conan-vr",
-      "inherits": ["build-release-clang-cl-conan-all", "runtimes-vr"],
-      "binaryDir": "${sourceDir}/build/release-clang-cl-conan-vr"
-    },
-    {
       "name": "build-release-msvc-conan-ae",
       "inherits": ["build-release-msvc-conan-all", "runtimes-ae"],
       "binaryDir": "${sourceDir}/build/release-msvc-conan-ae"
@@ -554,16 +502,6 @@
       "configurePreset": "build-debug-clang-cl-vcpkg-all"
     },
     {
-      "name": "debug-msvc-vcpkg-vr",
-      "displayName": "Debug (VR, MSVC, Vcpkg)",
-      "configurePreset": "build-debug-msvc-vcpkg-vr"
-    },
-    {
-      "name": "debug-clang-cl-vcpkg-vr",
-      "displayName": "Debug (VR, Clang-CL, Vcpkg)",
-      "configurePreset": "build-debug-clang-cl-vcpkg-vr"
-    },
-    {
       "name": "debug-msvc-vcpkg-flatrim",
       "displayName": "Debug (Flatrim, MSVC, Vcpkg)",
       "configurePreset": "build-debug-msvc-vcpkg-flatrim"
@@ -602,16 +540,6 @@
       "name": "release-clang-cl-vcpkg-all",
       "displayName": "Release (All, Clang-CL, Vcpkg)",
       "configurePreset": "build-release-clang-cl-vcpkg-all"
-    },
-    {
-      "name": "release-msvc-vcpkg-vr",
-      "displayName": "Release (VR, MSVC, Vcpkg)",
-      "configurePreset": "build-release-msvc-vcpkg-vr"
-    },
-    {
-      "name": "release-clang-cl-vcpkg-vr",
-      "displayName": "Release (VR, Clang-CL, Vcpkg)",
-      "configurePreset": "build-release-clang-cl-vcpkg-vr"
     },
     {
       "name": "release-msvc-vcpkg-flatrim",
@@ -654,16 +582,6 @@
       "configurePreset": "build-debug-clang-cl-conan-all"
     },
     {
-      "name": "debug-msvc-conan-vr",
-      "displayName": "Debug (VR, MSVC, Conan)",
-      "configurePreset": "build-debug-msvc-conan-vr"
-    },
-    {
-      "name": "debug-clang-cl-conan-vr",
-      "displayName": "Debug (VR, Clang-CL, Conan)",
-      "configurePreset": "build-debug-clang-cl-conan-vr"
-    },
-    {
       "name": "debug-msvc-conan-flatrim",
       "displayName": "Debug (Flatrim, MSVC, Conan)",
       "configurePreset": "build-debug-msvc-conan-flatrim"
@@ -702,16 +620,6 @@
       "name": "release-clang-cl-conan-all",
       "displayName": "Release (All, Clang-CL, Conan)",
       "configurePreset": "build-release-clang-cl-conan-all"
-    },
-    {
-      "name": "release-msvc-conan-vr",
-      "displayName": "Release (VR, MSVC, Conan)",
-      "configurePreset": "build-release-msvc-conan-vr"
-    },
-    {
-      "name": "release-clang-cl-conan-vr",
-      "displayName": "Release (VR, Clang-CL, Conan)",
-      "configurePreset": "build-release-clang-cl-conan-vr"
     },
     {
       "name": "release-msvc-conan-flatrim",

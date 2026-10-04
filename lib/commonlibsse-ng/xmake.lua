@@ -45,12 +45,6 @@ option("skyrim_ae", function()
     add_defines("ENABLE_SKYRIM_AE=1")
 end)
 
-option("skyrim_vr", function()
-    set_default(false)
-    set_description("Enable runtime support for Skyrim VR")
-    add_defines("ENABLE_SKYRIM_VR=1")
-end)
-
 option("skse_xbyak", function()
     set_default(false)
     set_description("Enable trampoline support for Xbyak")
@@ -83,10 +77,6 @@ if has_config("skse_xbyak") then
     add_requires("xbyak")
 end
 
-if has_config("skyrim_vr") then
-    add_requires("rapidcsv")
-end
-
 -- define targets
 target("commonlibsse-ng")
     -- set target kind
@@ -97,11 +87,6 @@ target("commonlibsse-ng")
 
     -- add packages
     add_packages("directxmath", "directxtk", "spdlog", { public = true })
-
-    if has_config("skyrim_vr") then
-        add_packages("rapidcsv", { public = true })
-        add_includedirs("extern/openvr/headers", { public = true })
-    end
 
     if has_config("rex_ini") then
         add_packages("simpleini", { public = true })
@@ -120,7 +105,7 @@ target("commonlibsse-ng")
     end
 
     -- add options
-    add_options("rex_ini", "rex_json", "rex_toml", "skyrim_se", "skyrim_ae", "skyrim_vr", "skse_xbyak", "tests", { public = true })
+    add_options("rex_ini", "rex_json", "rex_toml", "skyrim_se", "skyrim_ae", "skse_xbyak", "tests", { public = true })
 
     -- add system links
     add_syslinks("advapi32", "bcrypt", "d3d11", "d3dcompiler", "dbghelp", "dxgi", "ole32", "shell32", "user32", "version")

@@ -6,17 +6,15 @@ option(REX_OPTION_TOML "Enables toml config support for REX." OFF)
 option(SKSE_SUPPORT_XBYAK "Enables trampoline support for Xbyak." OFF)
 option(ENABLE_SKYRIM_SE "Enable support for Skyrim SE in the dynamic runtime feature." ON)
 option(ENABLE_SKYRIM_AE "Enable support for Skyrim AE in the dynamic runtime feature." ON)
-option(ENABLE_SKYRIM_VR "Enable support for Skyrim VR in the dynamic runtime feature." OFF)
 option(BUILD_TESTS "Enable building of the unit tests." ON)
 message("Options:")
 message("\tEnable Xbyak: ${SKSE_SUPPORT_XBYAK}")
 message("\tEnable Skyrim SE: ${ENABLE_SKYRIM_SE}")
 message("\tEnable Skyrim AE: ${ENABLE_SKYRIM_AE}")
-message("\tEnable Skyrim VR: ${ENABLE_SKYRIM_VR}")
 message("\tBuild Tests: ${BUILD_TESTS}")
 
-if(NOT ENABLE_SKYRIM_SE AND NOT ENABLE_SKYRIM_AE AND NOT ENABLE_SKYRIM_VR)
-	message(FATAL_ERROR "At least one Skyrim runtime must be supported by the CommonLibSSE build.")
+if(NOT ENABLE_SKYRIM_SE AND NOT ENABLE_SKYRIM_AE)
+	message(FATAL_ERROR "Skyrim SE or AE must be enabled for the CommonLibSSE build.")
 endif()
 
 project(
@@ -33,7 +31,6 @@ if("${PROJECT_SOURCE_DIR}" STREQUAL "${PROJECT_BINARY_DIR}")
 endif()
 
 find_package(spdlog CONFIG REQUIRED)
-find_path(RAPIDCSV_INCLUDE_DIRS "rapidcsv.h")
 find_package(directxtk CONFIG REQUIRED)
 
 include(cmake/sourcelist.cmake)
@@ -71,7 +68,6 @@ target_compile_definitions(
 	"$<$<BOOL:${SKSE_SUPPORT_XBYAK}>:SKSE_SUPPORT_XBYAK=1>"
 	"$<$<BOOL:${ENABLE_SKYRIM_SE}>:ENABLE_SKYRIM_SE=1>"
 	"$<$<BOOL:${ENABLE_SKYRIM_AE}>:ENABLE_SKYRIM_AE=1>"
-	"$<$<BOOL:${ENABLE_SKYRIM_VR}>:ENABLE_SKYRIM_VR=1>"
 	HAS_SKYRIM_MULTI_TARGETING=1
 )
 
@@ -121,19 +117,10 @@ target_include_directories(
 	"$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>"
 )
 
-if(ENABLE_SKYRIM_VR)
-	target_include_directories(
-		"${PROJECT_NAME}"
-		PUBLIC
-		"$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/extern/openvr/headers>"
-	)
-endif()
-
 target_include_directories(
 	"${PROJECT_NAME}"
 	PRIVATE
 	${spdlog_INCLUDE_DIRS}
-	${RAPIDCSV_INCLUDE_DIRS}
 )
 
 target_compile_definitions(
@@ -215,7 +202,6 @@ if(BUILD_TESTS)
 		PRIVATE
 		${Catch2_INCLUDE_DIRS}
 		${spdlog_INCLUDE_DIRS}
-		${RAPIDCSV_INCLUDE_DIRS}
 	)
 
 	target_compile_definitions(
