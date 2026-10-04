@@ -46,7 +46,7 @@ option("skyrim_ae", function()
 end)
 
 option("skyrim_vr", function()
-    set_default(true)
+    set_default(false)
     set_description("Enable runtime support for Skyrim VR")
     add_defines("ENABLE_SKYRIM_VR=1")
 end)

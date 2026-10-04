@@ -1,8 +1,6 @@
-# PrismaUI SKSE Plugin Template
+# CommonLibSSE-NG Empty Plugin Template
 
-This is a basic plugin template using PrismaUI and CommonLibSSE-NG.
-
-> **You can download ready-to-use plugin for MO2 here: [Download PrismaUI-Example-Plugin](https://github.com/PrismaUI-SKSE/PrismaUI-Wiki/releases)**
+A minimal SKSE plugin template for Skyrim SE/AE using CommonLibSSE-NG. It does not include PrismaUI or enable Skyrim VR.
 
 ### Requirements
 * [XMake](https://xmake.io) [2.8.2+]
@@ -10,7 +8,9 @@ This is a basic plugin template using PrismaUI and CommonLibSSE-NG.
 
 ## Getting Started
 ```bat
-git clone --recurse-submodules https://github.com/PrismaUI-SKSE/PrismaUI-Example-Plugin.git
+git clone <repository-url>
+cd <repository-directory>
+git submodule update --init --depth 1 lib/commonlibsse-ng
 ```
 
 ### Build
@@ -18,8 +18,6 @@ To build the project, run the following command:
 ```bat
 xmake build
 ```
-
-> Don't forget to move `view/index.html` to your plugin folder in `PrismaUI/PrismaUI-Example-UI/index.html`.
 
 > ***Note:*** *This will generate a `build/windows/` directory in the **project's root directory** with the build output.*
 

@@ -24,23 +24,11 @@ option('skyrim_ae')
     set_description('Build for Skyrim Anniversary Edition')
 option_end()
 
-option('skyrim_vr')
-    set_default(false)
-    set_showmenu(true)
-    set_description('Build for Skyrim VR only')
-option_end()
-
-if has_config('skyrim_vr') and (has_config('skyrim_se') or has_config('skyrim_ae')) then
-    raise('Cannot combine Skyrim VR with SE/AE builds. Enable only one configuration.')
-end
-
 target('CommonLibSSEClibDTEmptyTemplate')
     add_deps('commonlibsse-ng')
 
     local runtime = 'se_ae'
-    if has_config('skyrim_vr') then
-        runtime = 'vr'
-    elseif has_config('skyrim_ae') and not has_config('skyrim_se') then
+    if has_config('skyrim_ae') and not has_config('skyrim_se') then
         runtime = 'ae'
     elseif has_config('skyrim_se') and not has_config('skyrim_ae') then
         runtime = 'se'
@@ -49,7 +37,7 @@ target('CommonLibSSEClibDTEmptyTemplate')
     add_rules('commonlibsse-ng.plugin', {
         name        = 'CommonLibSSEClibDTEmptyTemplate',
         author      = 'LeStLee',
-        description = 'attempt to template a plugin for Clib to get rid of prismaUI and other unnecessary dependency',
+        description = 'Empty CommonLibSSE-NG plugin template',
         runtime     = runtime
     })
 
@@ -58,18 +46,12 @@ target('CommonLibSSEClibDTEmptyTemplate')
 
     add_includedirs(
         'src',
-        '$(projectdir)',
-        '$(projectdir)/ClibUtil',
-        '$(projectdir)/ClibUtil/detail',
-        '$(projectdir)/xbyak',
-        '$(projectdir)/simpleini'
+        '$(projectdir)'
     )
 
     set_pcxxheader('src/pch.h')
 
-    if has_config('skyrim_vr') then
-        add_defines('ENABLE_SKYRIM_VR')
-    elseif has_config('skyrim_se') and not has_config('skyrim_ae') then
+    if has_config('skyrim_se') and not has_config('skyrim_ae') then
         add_defines('ENABLE_SKYRIM_SE')
     elseif has_config('skyrim_ae') and not has_config('skyrim_se') then
         add_defines('ENABLE_SKYRIM_AE')
