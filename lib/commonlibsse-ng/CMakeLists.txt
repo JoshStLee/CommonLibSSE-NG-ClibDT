@@ -6,7 +6,7 @@ option(REX_OPTION_TOML "Enables toml config support for REX." OFF)
 option(SKSE_SUPPORT_XBYAK "Enables trampoline support for Xbyak." OFF)
 option(ENABLE_SKYRIM_SE "Enable support for Skyrim SE in the dynamic runtime feature." ON)
 option(ENABLE_SKYRIM_AE "Enable support for Skyrim AE in the dynamic runtime feature." ON)
-option(ENABLE_SKYRIM_VR "Enable support for Skyrim VR in the dynamic runtime feature." ON)
+option(ENABLE_SKYRIM_VR "Enable support for Skyrim VR in the dynamic runtime feature." OFF)
 option(BUILD_TESTS "Enable building of the unit tests." ON)
 message("Options:")
 message("\tEnable Xbyak: ${SKSE_SUPPORT_XBYAK}")
@@ -114,14 +114,20 @@ if(MSVC)
 	)
 endif()
 
-set(OPENVR_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/extern/openvr/headers)
 target_include_directories(
 	"${PROJECT_NAME}"
 	PUBLIC
 	"$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
 	"$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>"
-	"$<BUILD_INTERFACE:${OPENVR_INCLUDE_DIR}>"
 )
+
+if(ENABLE_SKYRIM_VR)
+	target_include_directories(
+		"${PROJECT_NAME}"
+		PUBLIC
+		"$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/extern/openvr/headers>"
+	)
+endif()
 
 target_include_directories(
 	"${PROJECT_NAME}"
