@@ -14,8 +14,7 @@
 #endif
 #pragma warning(pop)
 
-using namespace std::literals;
-using namespace std;
+using namespace std::literals; 
 
 namespace logger = SKSE::log;
 
