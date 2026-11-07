@@ -1,4 +1,12 @@
 set_xmakever('3.0.1')
+
+-- Disable Skyrim VR by default since this is an SE/AE plugin template
+option('skyrim_vr', function()
+    set_default(false)
+    set_showmenu(true)
+    set_description('Enable runtime support for Skyrim VR')
+end)
+
 includes('lib/commonlibsse-ng')
 
 set_project('CommonLibSSEClibDTEmptyTemplate')
@@ -12,33 +20,14 @@ set_toolset('msvc', 'ninja')
 
 add_rules('mode.debug', 'mode.releasedbg', 'mode.release')
 
-option('skyrim_se')
-    set_default(false)
-    set_showmenu(true)
-    set_description('Build for Skyrim Special Edition')
-option_end()
-
-option('skyrim_ae')
-    set_default(false)
-    set_showmenu(true)
-    set_description('Build for Skyrim Anniversary Edition')
-option_end()
-
 target('CommonLibSSEClibDTEmptyTemplate')
+    set_kind('shared')
     add_deps('commonlibsse-ng')
-
-    local runtime = 'se_ae'
-    if has_config('skyrim_ae') and not has_config('skyrim_se') then
-        runtime = 'ae'
-    elseif has_config('skyrim_se') and not has_config('skyrim_ae') then
-        runtime = 'se'
-    end
 
     add_rules('commonlibsse-ng.plugin', {
         name        = 'CommonLibSSEClibDTEmptyTemplate',
         author      = 'LeStLee',
-        description = 'Empty CommonLibSSE-NG plugin template',
-        runtime     = runtime
+        description = 'Empty CommonLibSSE-NG plugin template'
     })
 
     add_files('src/**.cpp')
@@ -50,12 +39,3 @@ target('CommonLibSSEClibDTEmptyTemplate')
     )
 
     set_pcxxheader('src/pch.h')
-
-    if has_config('skyrim_se') and not has_config('skyrim_ae') then
-        add_defines('ENABLE_SKYRIM_SE')
-    elseif has_config('skyrim_ae') and not has_config('skyrim_se') then
-        add_defines('ENABLE_SKYRIM_AE')
-    else
-        add_defines('ENABLE_SKYRIM_SE')
-        add_defines('ENABLE_SKYRIM_AE')
-    end

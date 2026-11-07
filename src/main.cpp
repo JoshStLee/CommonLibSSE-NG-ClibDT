@@ -8,7 +8,7 @@ static void SKSEMessageHandler(SKSE::MessagingInterface::Message* message)
     }
 }
 
-extern "C" DLLEXPORT bool SKSEAPI SKSEPlugin_Load(const SKSE::LoadInterface* a_skse)
+SKSEPluginLoad(const SKSE::LoadInterface* a_skse)
 {
     REL::Module::reset();
 

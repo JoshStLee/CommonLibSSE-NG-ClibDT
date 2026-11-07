@@ -24,6 +24,7 @@ namespace util
 }
 
 #define DLLEXPORT __declspec(dllexport)
+#define SKSEAPI __cdecl
 
 #define RELOCATION_OFFSET(SE, AE) REL::VariantOffset(SE, AE, 0).offset()
 
